@@ -38,7 +38,6 @@
 #define ADC0_ADCSSFIFO3 (*((volatile unsigned long*)0x400380A8))
 #define ADC0_ADCRIS (*((volatile unsigned long*)0x40038004))
 #define ADC0_ADCIM  (*((volatile unsigned long*)0x40038008))
-#define ADC0_ADCISC (*((volatile unsigned long*)0x40038000))
 //*******************************************************************************************************************
 //ADC1 module
 #define ADC1_ADCACTSS (*((volatile unsigned long*)0x40039000))
@@ -50,7 +49,6 @@
 #define ADC1_ADCSSFIFO3 (*((volatile unsigned long*)0x400390A8))
 #define ADC1_ADCRIS (*((volatile unsigned long*)0x40039004))
 #define ADC1_ADCIM  (*((volatile unsigned long*)0x40039008))
-#define ADC1_ADCISC (*((volatile unsigned long*)0x40039000))
 
 //*******************************************************************************************************************
 
