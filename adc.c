@@ -75,8 +75,8 @@ void sampleSequencerConfiguration (void){
     /*
      * 6. If interrupts are to be used, set the corresponding MASK bit in the ADCIM register.
      * */
-    ADC0_ADCIM||= (1<<3) ;
-    ADC1_ADCIM||= (1<<3) ;
+    ADC0_ADCIM|= (1<<3) ;
+    ADC1_ADCIM|= (1<<3) ;
     /* Enable the sample sequencer logic by setting the corresponding ASENn bit in the ADCACTSS
      *register.
      */
