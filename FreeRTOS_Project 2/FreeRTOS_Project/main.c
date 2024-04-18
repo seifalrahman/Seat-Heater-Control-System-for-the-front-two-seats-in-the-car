@@ -83,7 +83,7 @@ void vTemperatureReadingTask(void *pvParameters);
 /*Description: Reads temperature data from sensors placed inside the system.
  * Priority: Medium, as accurate temperature data is crucial for control decisions.
  * Dependencies: None.
- * Communication: Shares temperature data with the Control Task.
+ * Communication: Shares temperature data with theÂ ControlÂ Task.
 */
 
 void vTemperatureSettingTask(void *pvParameters);
@@ -297,7 +297,7 @@ void vTemperatureReadingTask(void *pvParameters)
     /*Description: Reads temperature data from sensors placed inside the system.
      * Priority: Medium, as accurate temperature data is crucial for control decisions.
      * Dependencies: None.
-     * Communication: Shares temperature data with the Control Task.
+     * Communication: Shares temperature data with theÂ ControlÂ Task.
      */
     uint8 DorP =((uint8)pvParameters) ; /*decides whether it is Driver's seat or passenger's seat*/
     const TickType_t xDelay = pdMS_TO_TICKS(100);
@@ -423,7 +423,7 @@ void vSupervisorTask(void *pvParameters){
 
         xStartTime = xTaskGetTickCount();
         if (xSemaphoreTake(CurrentTargetDMutex, portMAX_DELAY) == pdTRUE) {
-            LevelRequired=CurrentTargetD ;
+            LevelRequired=CurrentTargetD ;// LevelRequired here is in degrees
 
             /* Release the peripheral */
             xSemaphoreGive(CurrentTargetDMutex);
@@ -433,6 +433,7 @@ void vSupervisorTask(void *pvParameters){
         uint8 command ;
         if((LevelRequired-Reading)>=10){
             command=3;
+            
             xQueueSend(Command_HC_D,&command, portMAX_DELAY) ;
 
         }else if ((LevelRequired-Reading)>=5 && (LevelRequired-Reading)<10  ){
@@ -530,7 +531,7 @@ void vHeating_CoolingTask(void *pvParameters){
                         GPIO_GreenLedOff();
                         GPIO_BlueLedOn();
                     }else if(LevelRequired==1){
-                        CurrentTargetD=25 ;
+                       CurrentTargetD=25 ;
                         GPIO_RedLedOff();
                         GPIO_GreenLedOn();
                         GPIO_BlueLedOff();
