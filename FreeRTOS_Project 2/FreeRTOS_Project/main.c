@@ -698,9 +698,9 @@ void vDisplayTask(void *pvParameters){
                 UART0_SendString("\nTemp of Passenger Seat is : ") ;
                 UART0_SendByte(levelP);
                 UART0_SendString("\nHeating level is ");
-                UART0_SendString((uint32)CurrentTargetD);
+                UART0_SendByte((uint32)CurrentTargetD);
                 UART0_SendString("\nHeating level is ");
-                UART0_SendString((uint32)CurrentTargetP);
+                UART0_SendByte((uint32)CurrentTargetP);
                 UART0_SendString("\nHeating State ");
                 UART0_SendString(heaterStateD);
                 UART0_SendString("\nHeating State ");
@@ -724,9 +724,9 @@ void vDisplayTask(void *pvParameters){
                     UART0_SendString("\nTemp of Passenger Seat is : ") ;
                     UART0_SendByte(levelP);
                     UART0_SendString("\nHeating level is ");
-                    UART0_SendString((uint32)CurrentTargetD);
+                    UART0_SendByte((uint32)CurrentTargetD);
                     UART0_SendString("\nHeating level is ");
-                    UART0_SendString((uint32)CurrentTargetP);
+                    UART0_SendByte((uint32)CurrentTargetP);
                     UART0_SendString("\nHeating State ");
                     UART0_SendString(heaterStateD);
                     UART0_SendString("\nHeating State ");
