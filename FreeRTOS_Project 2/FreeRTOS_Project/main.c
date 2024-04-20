@@ -86,7 +86,7 @@ void vTemperatureReadingTask(void *pvParameters);
 /*Description: Reads temperature data from sensors placed inside the system.
  * Priority: Medium, as accurate temperature data is crucial for control decisions.
  * Dependencies: None.
- * Communication: Shares temperature data with the Control Task.
+ * Communication: Shares temperature data with theÂ ControlÂ Task.
 */
 
 void vTemperatureSettingTask(void *pvParameters);
@@ -128,6 +128,9 @@ TaskHandle_t vSupervisorTaskDHandle                ;
 TaskHandle_t vSupervisorTaskPHandle                ;
 TaskHandle_t vRunTimeMeasurementsTaskHandle        ;
 
+/*Display Task Variables*/
+    uint8 levelD;
+    uint8 levelP;
 
 int main(void)
 {
@@ -197,7 +200,7 @@ int main(void)
     vTaskSetApplicationTaskTag( vHeating_CoolingTaskForPSeatHandle, ( void * ) 7 );
 
 
-    xTaskCreate(vHeating_CoolingTask,
+    xTaskCreate(vDisplayTask,
                 "vDisplayTaskD"
                 , 256,
                 ((void*)'D'),
@@ -207,7 +210,7 @@ int main(void)
     vTaskSetApplicationTaskTag( vDisplayTaskDHandle, ( void * ) 8 );
 
 
-    xTaskCreate(vHeating_CoolingTask,
+    xTaskCreate(vDisplayTask,
                 "vDisplayTaskP"
                 , 256,
                 ((void*)'P'),
@@ -303,7 +306,7 @@ void vTemperatureReadingTask(void *pvParameters)
     /*Description: Reads temperature data from sensors placed inside the system.
      * Priority: Medium, as accurate temperature data is crucial for control decisions.
      * Dependencies: None.
-     * Communication: Shares temperature data with the Control Task.
+     * Communication: Shares temperature data with theÂ ControlÂ Task.
      */
     uint8 DorP =((uint8)pvParameters) ; /*decides whether it is Driver's seat or passenger's seat*/
     const TickType_t xDelay = pdMS_TO_TICKS(100);
@@ -675,8 +678,6 @@ void vHeating_CoolingTask(void *pvParameters){
     }
 }
 void vDisplayTask(void *pvParameters){
-    uint8 levelD;
-    uint8 levelP;
     for(;;){
         if( ((uint8)pvParameters) == 'D' ){
         if(xQueueReceive(Display_D, &levelD, portMAX_DELAY) == pdTRUE ){
