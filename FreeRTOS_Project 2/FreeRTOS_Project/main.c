@@ -697,10 +697,14 @@ void vDisplayTask(void *pvParameters){
                 UART0_SendByte(levelD);
                 UART0_SendString("\nTemp of Passenger Seat is : ") ;
                 UART0_SendByte(levelP);
-                UART0_SendString("\nHeating level is "+CurrentTargetD);
-                UART0_SendString("\nHeating level is "+CurrentTargetP);
-                UART0_SendString("\nHeating State "+heaterStateD);
-                UART0_SendString("\nHeating State "+heaterStateP);
+                UART0_SendString("\nHeating level is ");
+                UART0_SendString((uint32)CurrentTargetD);
+                UART0_SendString("\nHeating level is ");
+                UART0_SendString((uint32)CurrentTargetP);
+                UART0_SendString("\nHeating State ");
+                UART0_SendString(heaterStateD);
+                UART0_SendString("\nHeating State ");
+                UART0_SendString(heaterStateP);
                 /* Release the peripheral */
                 xSemaphoreGive(UARTMutex);
             }
@@ -710,7 +714,7 @@ void vDisplayTask(void *pvParameters){
         }
 
         }else{
-            if(xQueueReceive(Display_P, &levelD, portMAX_DELAY) == pdTRUE ){
+            if(xQueueReceive(Display_P, &levelP, portMAX_DELAY) == pdTRUE ){
                 TickType_t xStartTime, xEndTime;
 
                 if (xSemaphoreTake(UARTMutex, portMAX_DELAY) == pdTRUE) {
@@ -719,11 +723,14 @@ void vDisplayTask(void *pvParameters){
                     UART0_SendByte(levelD);
                     UART0_SendString("\nTemp of Passenger Seat is : ") ;
                     UART0_SendByte(levelP);
-                    UART0_SendString("\nHeating level is "+CurrentTargetD);
-                    UART0_SendString("\nHeating level is "+CurrentTargetP);
-                    UART0_SendString("\nHeating State "+heaterStateD);
-                    UART0_SendString("\nHeating State "+heaterStateP);
-                    /* Release the peripheral */
+                    UART0_SendString("\nHeating level is ");
+                    UART0_SendString((uint32)CurrentTargetD);
+                    UART0_SendString("\nHeating level is ");
+                    UART0_SendString((uint32)CurrentTargetP);
+                    UART0_SendString("\nHeating State ");
+                    UART0_SendString(heaterStateD);
+                    UART0_SendString("\nHeating State ");
+                    UART0_SendString(heaterStateP);
                     xSemaphoreGive(UARTMutex);
                 }
                 xEndTime = xTaskGetTickCount();
