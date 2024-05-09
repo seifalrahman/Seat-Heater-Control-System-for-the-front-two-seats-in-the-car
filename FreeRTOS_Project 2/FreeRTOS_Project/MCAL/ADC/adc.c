@@ -146,5 +146,3 @@ void PLL_Init(void)
     SYSCTL_RCC2_REG &= ~SYSCTL_RCC2_BYPASS2_MASK;
 }
 
-
-
